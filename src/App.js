@@ -2,12 +2,10 @@ import { useCallback, useState, useRef } from 'react';
 import ReactFlow, { addEdge, applyEdgeChanges, applyNodeChanges } from 'reactflow';
 import 'reactflow/dist/style.css';
 import './App.css';
-import './text-updater-node.css';
-
 import Header from './Components/Header/Header';
 import EditMessage from './Components/EditMessage/EditMessage';
 import DragAndDropNode from './Components/DragAndDropNode/DragAndDropNode';
-import TextUpdaterNode from './TextUpdaterNode.jsx';
+import TextUpdaterNode from './Components/TextUpdaterNode/TextUpdaterNode';
 import { SnackbarProvider, enqueueSnackbar } from 'notistack';
 
 
