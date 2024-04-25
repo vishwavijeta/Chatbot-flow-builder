@@ -1,7 +1,7 @@
 import { Handle, Position } from 'reactflow';
 import { FcCallback } from "react-icons/fc";
 import { BiMessageRoundedDetail } from "react-icons/bi";
-import './text-updater-node.css';
+import './TextUpdaterNode.css';
 
 
 const TextUpdaterNode = ({ data, isConnectable, id }) => {
