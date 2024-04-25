@@ -1,4 +1,4 @@
-import { useCallback, useState, useRef } from 'react';
+import { useCallback, useState, useRef, useMemo } from 'react';
 import ReactFlow, { addEdge, applyEdgeChanges, applyNodeChanges } from 'reactflow';
 import 'reactflow/dist/style.css';
 import './App.css';
@@ -7,31 +7,8 @@ import EditMessage from './Components/EditMessage/EditMessage';
 import DragAndDropNode from './Components/DragAndDropNode/DragAndDropNode';
 import TextUpdaterNode from './Components/TextUpdaterNode/TextUpdaterNode';
 import { SnackbarProvider, enqueueSnackbar } from 'notistack';
+import { initialNodes, initialEdges } from './utils/defaultData';
 
-
-const initialNodes = [
-  {
-    id: '1',
-    // type: 'input',
-    type: 'textUpdater',
-    data: '123',
-    position: { x: 250, y: 25 },
-  },
-  {
-    id: '2',
-    type: 'textUpdater',
-    data: '567',
-    position: { x: 100, y: 125 },
-  }
-];
-
-const initialEdges = [
-  { id: 'e1-2', source: '1', target: '2' }
-];
-
-// we define the nodeTypes outside of the component to prevent re-renderings
-// you could also use useMemo inside the component
-const nodeTypes = { textUpdater: TextUpdaterNode };
 
 const App = () => {
 
@@ -54,6 +31,9 @@ const App = () => {
   // used to get the reference of the textarea
   const textareaRef = useRef(null);
 
+  const nodeTypes = useMemo(() => {
+    return { textUpdater: TextUpdaterNode };
+  }, []);
 
   // Define the event handlers
   const onNodesChange = useCallback((changes) => {
@@ -64,11 +44,11 @@ const App = () => {
     findNodeDataById(changes[0].id)
     setNodes((nds) => applyNodeChanges(changes, nds))
   }, [nodes]);
-  
+
 
   const onEdgesChange = useCallback((changes) => {
     setEdges((eds) => applyEdgeChanges(changes, eds))
-  },[edges]);
+  }, [edges]);
 
 
   const onConnect = useCallback((connection) => {
@@ -84,8 +64,8 @@ const App = () => {
 
     // Generate a new id for the new node
     // and update the latestId state variable
-    const newId = latestId + 1; 
-    setLatestId(newId); 
+    const newId = latestId + 1;
+    setLatestId(newId);
 
     // Create a new node object
     const newNode = {
