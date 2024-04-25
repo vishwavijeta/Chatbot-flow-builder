@@ -4,16 +4,9 @@
     border-radius: 10px;
     background: white;
     cursor: pointer;
-    box-shadow: 0 0 5px rgba(0,0,0,.25), 0 0 5px rgba(0,0,0,.25), inset 17px 23px 15px 1px hsla(0,0%,100%,.1);
+    box-shadow: 0 0 5px rgba(0, 0, 0, .25), 0 0 5px rgba(0, 0, 0, .25), inset 17px 23px 15px 1px hsla(0, 0%, 100%, .1);
 }
 
-.text-updater-node label {
-    display: block;
-    color: #777;
-    font-size: 12px;
-}
-
-/* // add boorder to the node when active */
 .text-updater-node.active {
     border: 2px solid #36f;
 }
